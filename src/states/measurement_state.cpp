@@ -5,6 +5,7 @@
 #include <configuration.h>
 #include "measurement_state.h"
 #include "data_lake.h"
+#include "common_math.h"
 
 void draw_humidity() {
     int current_humidity = read_humidity();

@@ -3,6 +3,7 @@
 #include <watering.h>
 #include <self_supply_sensor.h>
 #include <screen.h>
+#include <humidity_sensor.h>
 #include "self_check_state.h"
 
 void update_self_check();
@@ -21,7 +22,7 @@ void update_self_check() {
     sprintf(self_check_screen_buffer, "Self check:");
     draw_self_check(7, self_check_screen_buffer);
 
-    sprintf(self_check_screen_buffer, "Humidity: %d", read_current_humidity());
+    sprintf(self_check_screen_buffer, "Humidity: %d", read_humidity());
     draw_self_check(22, self_check_screen_buffer);
 
     sprintf(self_check_screen_buffer, "Optimal: %d", read_optimal_humidity());

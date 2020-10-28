@@ -27,9 +27,10 @@ void init_screen() {
 
 void draw_current_humidity(char *humidity_state) {
     init_screen();
+    u8g2.setFont(u8g2_font_7x13B_tf);
 
     sprintf(screen_buffer, "%s", humidity_state);
-    u8g2.drawStr(1, 11, screen_buffer);
+    u8g2.drawStr(2, 10, screen_buffer);
     u8g2.sendBuffer();
     delay(1000);
 }
@@ -43,6 +44,8 @@ void draw_self_check(int line, char *buffer) {
 }
 
 void draw_battery_icon(int supply_percentage) {
+    init_screen();
+
     u8g2.setDrawColor(0);
     u8g2.drawBox(108, 1, 20, 10);
     u8g2.setDrawColor(1);
