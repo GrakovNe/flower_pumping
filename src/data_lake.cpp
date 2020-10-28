@@ -1,7 +1,6 @@
 #include <EEPROM.h>
 #include "data_lake.h"
 
-
 int read_current_humidity() {
     return current_humidity;
 }
@@ -32,4 +31,26 @@ int read_last_watering() {
 
 void write_last_watering(int hours) {
     EEPROM.update(OPTIMAL_HUMIDITY_ADDRESS, hours);
+}
+
+void write_watering_enabled(bool state) {
+    EEPROM.update(IS_WATERING_ENABLED_ADDRESS, state);
+}
+
+int read_watering_enabled() {
+    return EEPROM.read(IS_WATERING_ENABLED_ADDRESS);
+}
+
+void initialize_data_lake() {
+    static bool is_water_tank_filled = true;
+    static int current_humidity = 999;
+
+    if (EEPROM.read(IS_DEVICE_INITIALIZED_ADDRESS)) {
+        return;
+    }
+
+    write_last_watering(0);
+    write_buzzer_enabled(true);
+    write_optimal_humidity(500);
+    write_watering_enabled(false);
 }

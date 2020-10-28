@@ -16,7 +16,9 @@ void init_sensor() {
 }
 
 int read_humidity() {
+    init_sensor();
     enable_sensor();
+
     delay(500);
 
     int result = analogRead(HUMIDITY_SENSOR_PIN);
