@@ -67,6 +67,17 @@ void draw_self_check(int line, char *buffer) {
     u8g2.sendBuffer();
 }
 
+void draw_state(int state) {
+    init_screen();
+
+    u8g2.setFont(u8g2_font_5x7_mf);
+    sprintf(screen_buffer, "state: %d", state);
+    u8g2.drawStr(10, 20, screen_buffer);
+    u8g2.sendBuffer();
+
+    delay(1000);
+}
+
 void draw_battery_icon(int supply_percentage) {
     init_screen();
     fill_previous(108, 1, 20, 10);

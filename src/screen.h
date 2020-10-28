@@ -11,3 +11,5 @@ void draw_current_humidity(char *humidity_state);
 void draw_last_watered(int last_watered_hours);
 
 void draw_watering_disabled();
+
+void draw_state(int state);

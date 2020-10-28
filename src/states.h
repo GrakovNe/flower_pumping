@@ -5,4 +5,4 @@
 #define SELF_CHECK_STATE 4
 #define LOADING_STATE 5
 
-static char current_state = LOADING_STATE;
+extern char current_state;

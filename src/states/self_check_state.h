@@ -1,1 +1,1 @@
-void on_self_check();
+void on_self_check_state();
