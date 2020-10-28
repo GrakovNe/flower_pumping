@@ -1,14 +1,6 @@
 #include <EEPROM.h>
 #include "data_lake.h"
 
-int read_current_humidity() {
-    return current_humidity;
-}
-
-void write_current_humidity(int humidity) {
-    current_humidity = humidity;
-}
-
 int read_optimal_humidity() {
     int result = 0;
     EEPROM.get(OPTIMAL_HUMIDITY_ADDRESS, result);

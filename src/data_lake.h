@@ -5,11 +5,6 @@
 #define IS_DEVICE_INITIALIZED_ADDRESS 30
 
 static bool is_water_tank_filled = true;
-static int current_humidity = 999;
-
-int read_current_humidity();
-
-void write_current_humidity(int humidity);
 
 int read_optimal_humidity();
 

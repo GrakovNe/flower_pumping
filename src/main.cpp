@@ -21,7 +21,7 @@ void setup() {
 }
 
 void loop() {
-    current_state = SELF_CHECK_STATE;
+    current_state = MEASUREMENT_STATE;
 
     switch (current_state) {
         case MEASUREMENT_STATE:

@@ -1,0 +1,1 @@
+int calculate_diff(int first_number, int second_number);
