@@ -42,12 +42,14 @@ void initialize_data_lake() {
     static bool is_water_tank_filled = true;
     static int current_humidity = 999;
 
-//    if (EEPROM.read(IS_DEVICE_INITIALIZED_ADDRESS)) {
-//        return;
-//    }
+    if (EEPROM.read(IS_DEVICE_INITIALIZED_ADDRESS)) {
+        return;
+    }
 
     write_last_watered(0);
     write_buzzer_enabled(true);
     write_optimal_humidity(500);
     write_watering_enabled(false);
+
+    EEPROM.write(IS_DEVICE_INITIALIZED_ADDRESS, true);
 }

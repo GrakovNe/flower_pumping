@@ -6,10 +6,7 @@
 #include "data_lake.h"
 #include "common_math.h"
 
-void show_current_humidity() {
-    int current_humidity = read_humidity();
-    int optimal_humidity = read_optimal_humidity();
-
+void show_current_humidity(int current_humidity, int optimal_humidity) {
     int diff = calculate_diff(current_humidity, optimal_humidity);
 
     if (diff < HUMIDITY_THRESHOLD) {
@@ -28,13 +25,26 @@ void show_current_humidity() {
     }
 }
 
+void show_watering_disabled() {
+    draw_watering_disabled();
+}
+
 void show_last_watered() {
     int last_watered_hours = read_last_watered();
     draw_last_watered(last_watered_hours);
 }
 
 void on_measurement_state() {
-    draw_battery_icon(read_self_supply_percentage());
-    show_current_humidity();
-    show_last_watered();
+    int current_humidity = read_humidity();
+    int optimal_humidity = read_optimal_humidity();
+    int self_supply_percentage = read_self_supply_percentage();
+
+    draw_battery_icon(self_supply_percentage);
+    show_current_humidity(current_humidity, optimal_humidity);
+
+    if (read_watering_enabled()) {
+        show_last_watered();
+    } else {
+        show_watering_disabled();
+    }
 }
