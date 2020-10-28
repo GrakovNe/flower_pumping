@@ -4,16 +4,18 @@
 #include "pinout.h"
 
 void init_watering_pump() {
-    pinMode(WATER_TANK_SENSOR_PIN, OUTPUT);
-    digitalWrite(WATER_TANK_SENSOR_PIN, LOW);
+    pinMode(WATER_TANK_SENSOR_PIN, INPUT);
+
+    pinMode(WATER_TANK_POWER_PIN, OUTPUT);
+    digitalWrite(WATER_TANK_POWER_PIN, LOW);
 }
 
 void enable_water_pump() {
-    digitalWrite(WATER_TANK_SENSOR_PIN, HIGH);
+    digitalWrite(WATER_TANK_POWER_PIN, HIGH);
 }
 
 void disable_water_pump() {
-    digitalWrite(WATER_TANK_SENSOR_PIN, LOW);
+    digitalWrite(WATER_TANK_POWER_PIN, LOW);
 }
 
 void water_for_second() {
@@ -32,6 +34,6 @@ void water_for_second() {
 }
 
 bool check_water_tank() {
-    is_water_tank_filled = true;
+    is_water_tank_filled = digitalRead(WATER_TANK_SENSOR_PIN);
     return is_water_tank_filled;
 }
