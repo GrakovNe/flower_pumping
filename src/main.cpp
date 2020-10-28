@@ -54,7 +54,3 @@ void on_settings_state() {
 void on_watering_state() {
 
 }
-
-void on_measurement_state() {
-
-}
