@@ -10,6 +10,12 @@ static bool is_screen_initialized = false;
 
 char screen_buffer[64];
 
+void fill_previous(int x, int y, int width, int height) {
+    u8g2.setDrawColor(0);
+    u8g2.drawBox(x, y, width, height);
+    u8g2.setDrawColor(1);
+}
+
 void init_screen() {
     if (is_screen_initialized) {
         return;
@@ -23,6 +29,24 @@ void init_screen() {
     clear_screen();
 
     is_screen_initialized = true;
+}
+
+void draw_last_watered(int last_watered_hours) {
+    init_screen();
+    fill_previous(15, 41, 30, 20);
+
+    u8g2.setFont(u8g2_font_7x13B_tf);
+
+    sprintf(screen_buffer, "LAST WATERED");
+    u8g2.drawStr(20, 41, screen_buffer);
+
+    sprintf(screen_buffer, "%03d", last_watered_hours);
+    u8g2.drawStr(18, 56, screen_buffer);
+
+    sprintf(screen_buffer, "HOURS AGO");
+    u8g2.drawStr(45, 56, screen_buffer);
+
+    u8g2.sendBuffer();
 }
 
 void draw_current_humidity(char *humidity_state) {
@@ -46,10 +70,7 @@ void draw_self_check(int line, char *buffer) {
 void draw_battery_icon(int supply_percentage) {
     init_screen();
 
-    u8g2.setDrawColor(0);
-    u8g2.drawBox(108, 1, 20, 10);
-    u8g2.setDrawColor(1);
-    init_screen();
+    fill_previous(108, 1, 20, 10);
 
     u8g2.drawFrame(108, 1, 18, 10);
     u8g2.drawBox(126, 3, 2, 5);

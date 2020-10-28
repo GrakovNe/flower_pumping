@@ -1,4 +1,3 @@
-#include <Arduino.h>
 #include <screen.h>
 #include <self_supply_sensor.h>
 #include <humidity_sensor.h>
@@ -7,7 +6,7 @@
 #include "data_lake.h"
 #include "common_math.h"
 
-void draw_humidity() {
+void show_current_humidity() {
     int current_humidity = read_humidity();
     int optimal_humidity = read_optimal_humidity();
 
@@ -29,7 +28,13 @@ void draw_humidity() {
     }
 }
 
+void show_last_watered() {
+    int last_watered_hours = read_last_watered();
+    draw_last_watered(last_watered_hours);
+}
+
 void on_measurement_state() {
     draw_battery_icon(read_self_supply_percentage());
-    draw_humidity();
+    show_current_humidity();
+    show_last_watered();
 }

@@ -20,14 +20,14 @@ void write_buzzer_enabled(bool state) {
     EEPROM.update(OPTIMAL_HUMIDITY_ADDRESS, state);
 }
 
-int read_last_watering() {
+int read_last_watered() {
     int result = 0;
-    EEPROM.get(LAST_WATERING_HOURS_ADDRESS, result);
+    EEPROM.get(LAST_WATERED_HOURS_ADDRESS, result);
     return result;
 }
 
-void write_last_watering(int hours) {
-    EEPROM.put(OPTIMAL_HUMIDITY_ADDRESS, hours);
+void write_last_watered(int hours) {
+    EEPROM.put(LAST_WATERED_HOURS_ADDRESS, hours);
 }
 
 void write_watering_enabled(bool state) {
@@ -46,7 +46,7 @@ void initialize_data_lake() {
 //        return;
 //    }
 
-    write_last_watering(0);
+    write_last_watered(0);
     write_buzzer_enabled(true);
     write_optimal_humidity(500);
     write_watering_enabled(false);
