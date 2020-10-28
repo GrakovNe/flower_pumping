@@ -15,6 +15,8 @@ void init_screen() {
     u8x8.drawString(1, 11, "LOADING...");
     delay(500);
     u8x8.clearDisplay();
+
+    is_screen_initialized = true;
 }
 
 void draw_humidity() {
@@ -28,8 +30,15 @@ void draw_humidity() {
 }
 
 
-void draw_self_check(char *buffer) {
-    u8x8.clearDisplay();
+void draw_self_check(int line, char *buffer) {
+    if (!is_screen_initialized) {
+        init_screen();
+    }
+
     u8x8.setFont(u8x8_font_5x7_f);
-    u8x8.drawString(0, 0, buffer);
+    u8x8.drawString(0, line, buffer);
+}
+
+void clear_screen() {
+    u8x8.clearDisplay();
 }

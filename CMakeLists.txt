@@ -31,4 +31,4 @@ add_custom_target(
 )
 
 link_directories(src/lib)
-add_executable(Z_DUMMY_TARGET ${SRC_LIST} src/screen.cpp src/screen.h src/pinout.h src/data_lake.cpp src/data_lake.h src/humidity_sensor.cpp src/humidity_sensor.h src/self_supply_sensor.cpp src/self_supply_sensor.h src/watering.cpp src/watering.h src/states.h)
+add_executable(Z_DUMMY_TARGET ${SRC_LIST} src/screen.cpp src/screen.h src/pinout.h src/data_lake.cpp src/data_lake.h src/humidity_sensor.cpp src/humidity_sensor.h src/self_supply_sensor.cpp src/self_supply_sensor.h src/watering.cpp src/watering.h src/states.h src/states/self_check_state.cpp src/states/self_check_state.h)

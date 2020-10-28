@@ -143,7 +143,7 @@ class U8G2 : public Print
     }
 
     void beginSimple(void) {
-      /* does not clear the display and does not wake up the display */
+      /* does not clear_screen the display and does not wake up the display */
       /* user is responsible for calling clearDisplay() and setPowerSave(0) */
       initDisplay();  }
       

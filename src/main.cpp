@@ -18,9 +18,6 @@ void on_self_check_state();
 
 void setup() {
     initialize_data_lake();
-
-    current_state = LOADING_STATE;
-    loop();
 }
 
 void loop() {
@@ -43,29 +40,6 @@ void loop() {
         default:
             current_state = MEASUREMENT_STATE;
             break;
-    }
-}
-
-void on_self_check_state() {
-    char self_check_screen_buffer[128];
-
-    while (true) {
-        sprintf(self_check_screen_buffer, "self checking:\n"
-                                          "current humidity: %d\n"
-                                          "target_humidity: %d\n"
-                                          "water tank filled: %d\n"
-                                          "watering_enabled: %d\n"
-                                          "supply level: %d",
-
-                read_current_humidity(),
-                read_optimal_humidity(),
-                check_water_tank(),
-                read_watering_enabled(),
-                read_self_supply_percentage());
-
-        draw_self_check(self_check_screen_buffer);
-        delay(500);
-
     }
 }
 
