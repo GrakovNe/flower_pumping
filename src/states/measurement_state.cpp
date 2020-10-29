@@ -28,6 +28,7 @@ void on_measurement_state() {
 
         clear_on_screen_changed();
         current_state = WATERING_STATE;
+        return;
     }
 
     update_screen();

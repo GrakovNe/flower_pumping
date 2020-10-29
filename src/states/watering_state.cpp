@@ -19,6 +19,7 @@ void on_watering_state() {
 
     water_for_second();
 
-    //current_state = MEASUREMENT_STATE;
-    //clear_on_screen_changed();
+    current_state = MEASUREMENT_STATE;
+
+    clear_on_screen_changed();
 }

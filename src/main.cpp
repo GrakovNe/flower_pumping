@@ -20,7 +20,7 @@ void setup() {
 }
 
 void loop() {
-    draw_state(current_state);
+    //draw_state(current_state);
     switch (current_state) {
         case MEASUREMENT_STATE:
             on_measurement_state();

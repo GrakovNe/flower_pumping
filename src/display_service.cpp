@@ -48,7 +48,6 @@ void show_watering() {
 
 void clear_on_screen_changed() {
     clear_screen();
-    finish_screen();
 }
 
 void update_screen() {
