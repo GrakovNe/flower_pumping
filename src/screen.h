@@ -13,3 +13,7 @@ void draw_last_watered(int last_watered_hours);
 void draw_watering_disabled();
 
 void draw_state(int state);
+
+void draw_watering();
+
+void finish_screen();

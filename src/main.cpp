@@ -6,9 +6,8 @@
 #include "watering.h"
 #include "states/measurement_state.h"
 #include "states/self_check_state.h"
+#include "states/watering_state.h"
 #include "self_supply_sensor.h"
-
-void on_watering_state();
 
 void on_settings_state();
 
@@ -20,7 +19,7 @@ void setup() {
 }
 
 void loop() {
-    //draw_state(current_state);
+    draw_state(current_state);
     switch (current_state) {
         case MEASUREMENT_STATE:
             on_measurement_state();
@@ -45,9 +44,5 @@ void on_error_state() {
 }
 
 void on_settings_state() {
-
-}
-
-void on_watering_state() {
 
 }
