@@ -14,6 +14,7 @@ void on_settings_state();
 void on_error_state();
 
 void setup() {
+    init_screen();
     initialize_data_lake();
     current_state = MEASUREMENT_STATE;
 }

@@ -6,9 +6,6 @@
 #include "configuration.h"
 
 U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
-//const u8g2_cb_t *rotation, uint8_t reset = U8X8_PIN_NONE, uint8_t clock = U8X8_PIN_NONE, uint8_t data = U8X8_PIN_NONE
-//const u8g2_cb_t *rotation, uint8_t clock, uint8_t data, uint8_t reset = U8X8_PIN_NONE)
-//U8G2_SH1106_128X64_NONAME_F_SW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE, U8X8_PIN_NONE);
 
 static bool is_screen_initialized = false;
 
@@ -26,7 +23,6 @@ void draw_watering() {
 }
 
 void draw_last_watered(int last_watered_hours) {
-    init_screen();
     fill_previous(15, 41, 30, 20);
 
     u8g2.setFont(u8g2_font_7x13B_tf);
@@ -40,7 +36,6 @@ void draw_last_watered(int last_watered_hours) {
 }
 
 void draw_current_humidity(char *humidity_state) {
-    init_screen();
     fill_previous(0, 0, 108, 20);
 
     u8g2.setFont(u8g2_font_7x13B_tf);
@@ -49,15 +44,11 @@ void draw_current_humidity(char *humidity_state) {
 }
 
 void draw_self_check(int line, char *buffer) {
-    init_screen();
-
     u8g2.setFont(u8g2_font_5x7_mf);
     u8g2.drawStr(0, line, buffer);
 }
 
 void draw_state(int state) {
-    init_screen();
-
     u8g2.setFont(u8g2_font_5x7_mf);
     sprintf(screen_buffer, "state: %d", state);
     u8g2.drawStr(10, 20, screen_buffer);
@@ -65,7 +56,6 @@ void draw_state(int state) {
 }
 
 void draw_battery_icon(int supply_percentage) {
-    init_screen();
     fill_previous(108, 1, 20, 10);
 
     u8g2.drawFrame(108, 1, 18, 10);
@@ -73,20 +63,22 @@ void draw_battery_icon(int supply_percentage) {
 
     if (supply_percentage > LOW_BATTERY_LEVEL) {
         u8g2.drawBox(110, 3, 4, 6);
+        return;
     }
 
     if (supply_percentage > MEDIUM_BATTERY_LEVEL) {
         u8g2.drawBox(115, 3, 4, 6);
+        return;
     }
 
     if (supply_percentage > HIGH_BATTERY_LEVEL) {
         u8g2.drawBox(120, 3, 4, 6);
+        return;
     }
 
 }
 
 void draw_watering_disabled() {
-    init_screen();
     fill_previous(15, 41, 30, 20);
 
     u8g2.setFont(u8g2_font_7x13B_tf);
@@ -96,18 +88,12 @@ void draw_watering_disabled() {
 }
 
 void init_screen() {
-    if (is_screen_initialized) {
-        return;
-    }
-
     u8g2.setBusClock(400000);
     u8g2.begin();
     u8g2.clearDisplay();
     u8g2.setFont(u8g2_font_9x15B_tf);
     u8g2.drawStr(1, 11, "LOADING...");
     delay(500);
-
-    is_screen_initialized = true;
 }
 
 void clear_screen() {
