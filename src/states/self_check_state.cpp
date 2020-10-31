@@ -4,15 +4,18 @@
 #include <self_supply_sensor.h>
 #include <screen.h>
 #include <humidity_sensor.h>
+#include <display_service.h>
 #include "self_check_state.h"
 
 void update_self_check();
 
 void on_self_check_state() {
     while (true) {
-        update_self_check();
-        delay(1000);
         clear_screen();
+        update_self_check();
+        update_screen();
+
+        delay(1000);
     }
 }
 

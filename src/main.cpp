@@ -8,14 +8,17 @@
 #include "states/self_check_state.h"
 #include "states/watering_state.h"
 #include "self_supply_sensor.h"
+#include "humidity_sensor.h"
 
 void on_settings_state();
 
 void on_error_state();
 
 void setup() {
+    init_sensor();
     init_screen();
     initialize_data_lake();
+
     current_state = MEASUREMENT_STATE;
 }
 
